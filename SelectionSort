@@ -1,0 +1,33 @@
+using System;
+
+namespace Algorithms
+{
+    public class SelectionSortProgram
+    {
+        public static void Main(string[] args)
+        {
+            int[] arr = { 9,1,2,5,8,3 };
+            int[] result = SelectionSort(arr);
+            foreach(int val in result){
+                System.Console.Write(val + " ");
+            }
+                                 
+        }    
+        public static int[] SelectionSort(int[] arr){
+            
+            for(int i = 0; i< arr.Length; i++){
+                int index = i, temp;
+                for(int j = i+1; j< arr.Length; j++){
+                
+                    if(arr[j] < arr[index]) { index = j;}  // we will be getting the best next least element to be replaced at position i
+                }
+                //Swap arr[i], arr[index]
+                temp = arr[i];
+                arr[i]= arr[index];
+                arr[index] = temp;
+               
+            }
+            return arr;
+        }
+    }
+}
