@@ -1,0 +1,63 @@
+using System;
+
+namespace Algorithms
+{
+    public class MergeSortProgram
+    {
+        public static void Main(string[] args)
+        {
+            int[] arr = { 9, 1, 4, 2, 7, 3 };
+             MergeSort(arr, 0, 5);
+            foreach(int a in arr){
+                System.Console.Write(a + " ");
+            }
+                
+                                 
+        }    
+        public static void MergeSort(int[] arr, int start, int end){
+            if(start < end){
+                int middle = (start + end)/2;
+    
+                MergeSort(arr, start, middle);
+                MergeSort(arr, middle+1, end);
+                Merge(arr, start, end, middle); 
+            }
+        }
+        
+        public static void Merge(int[] arr, int start, int end, int middle){
+            int[] temp = new int[end-start+1];
+            int tempIndex = 0;
+            int i=start;
+            int j=middle+1;
+            while( i<= middle && j<= end){
+                if(arr[i]<arr[j])
+                { 
+                    temp[tempIndex] = arr[i];
+                    tempIndex++;
+                    i++;
+                }else{
+                    temp[tempIndex] = arr[j];
+                    tempIndex++;
+                    j++;
+                }
+            }
+            
+            while(i <= middle){
+                temp[tempIndex] = arr[i];
+                tempIndex++;
+                i++;
+            }
+            while(j <= end){
+                temp[tempIndex] = arr[j];
+                tempIndex++;
+                j++;
+            }
+            
+            for( i = 0; i< temp.Length; i++){
+                arr[start+i] = temp[i];
+
+            } 
+            
+        }
+    }
+}
